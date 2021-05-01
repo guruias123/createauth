@@ -69,7 +69,7 @@ app.delete('/delete',(req,res) => {
 app.get('/userInfo',(req,res) => {
     var token = req.headers['x-access-token'];
     if(!token) return res.send({auth:false,token:"No Token Provided"})
-    jwt.verify(token,config.secert,(err,data) => {
+    jwt.verify(token,config.secret,(err,data) => {
         if(err) return res.send({auth:false,token:"Invalid Token Provided"})
         User.findById(data.id,{password:0},(err,result) => {
             res.send(result)
